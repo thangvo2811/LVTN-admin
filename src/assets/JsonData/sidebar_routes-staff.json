@@ -1,0 +1,27 @@
+[
+  {
+    "display_name": "Bài Viết",
+    "route": "/blog",
+    "icon": "bx bx-news"
+  },
+  {
+    "display_name": "Đơn Hàng",
+    "route": "/orders",
+    "icon": "bx bx-cart"
+  },
+  {
+    "display_name": "Kho Sản Phẩm",
+    "route": "/store",
+    "icon": "bx bx-store"
+  },
+  {
+    "display_name": "Chi Nhánh",
+    "route": "/branch",
+    "icon": "bx bx-store"
+  },
+  {
+    "display_name": "Thông Tin Bảo Hành",
+    "route": "/infoWarranty",
+    "icon": "bx bx-store"
+  }
+]

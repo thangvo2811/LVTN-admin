@@ -1,0 +1,94 @@
+[
+  {
+    "display_name": "Dashboard",
+    "route": "/dashboard",
+    "icon": "bx bx-category-alt"
+  },
+  {
+    "display_name": "Nhân Viên",
+    "route": "/employee",
+    "icon": "bx bx-user-pin"
+  },
+  {
+    "display_name": "Khách Hàng",
+    "route": "/customers",
+    "icon": "bx bx-user-pin"
+  },
+  {
+    "display_name": "Sản Phẩm",
+    "route": "/products",
+    "icon": "bx bx-package"
+  },
+  {
+    "display_name": "Danh Mục Thuộc Tính",
+    "route": "/optionCategory",
+    "icon": "bx bx-list-ol"
+  },
+  {
+    "display_name": "Thuộc Tính",
+    "route": "/option",
+    "icon": "bx bx-package"
+  },
+
+  {
+    "display_name": "Danh Mục",
+    "route": "/categories",
+    "icon": "bx bx-list-ol"
+  },
+  {
+    "display_name": "Thương Hiệu",
+    "route": "/brand",
+    "icon": "bx bx-list-ol"
+  },
+
+  {
+    "display_name": "Đánh Giá",
+    "route": "/comment",
+    "icon": "bx bx-comment"
+  },
+  {
+    "display_name": "Phản Hồi Đánh Giá",
+    "route": "/feedback",
+    "icon": "bx bx-comment"
+  },
+  {
+    "display_name": "Bài Viết",
+    "route": "/blog",
+    "icon": "bx bx-news"
+  },
+  {
+    "display_name": "Đơn Hàng",
+    "route": "/orders",
+    "icon": "bx bx-cart"
+  },
+  {
+    "display_name": "Voucher",
+    "route": "/discount",
+    "icon": "bx bx-gift"
+  },
+  {
+    "display_name": "Kho Sản Phẩm",
+    "route": "/store",
+    "icon": "bx bx-store"
+  },
+  {
+    "display_name": "Chi Nhánh",
+    "route": "/branch",
+    "icon": "bx bx-store"
+  },
+  {
+    "display_name": "Chi Nhánh Bảo Hành",
+    "route": "/branchWarranty",
+    "icon": "bx bx-store"
+  },
+  {
+    "display_name": "Bảo Hành",
+    "route": "/warranty",
+    "icon": "bx bx-store"
+  },
+  {
+    "display_name": "Thông Tin Bảo Hành",
+    "route": "/infoWarranty",
+    "icon": "bx bx-store"
+  }
+]

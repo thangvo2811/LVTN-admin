@@ -1,0 +1,42 @@
+.form-name {
+  font-size: 16px;
+}
+.form-input {
+  padding: 10px;
+  width: 100%;
+  input {
+    border: 1px solid;
+    padding: 10px;
+    flex: 1;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  label {
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  /* For Firefox  */
+
+  .product-img {
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+}
+.form-title {
+  margin-left: 10px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.bx-trash {
+  color: red;
+}

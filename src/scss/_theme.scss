@@ -1,0 +1,40 @@
+@import "./variable";
+@use "sass:map";
+.theme-mode-light {
+  --main-bg: #{$main-bg-light};
+  --second-bg: #{$second-bg-light};
+  --txt-color: #{$txt-color-light};
+  --box-shadow: #{$box-shadow-light};
+}
+
+.theme-mode-dark {
+  --main-bg: #{$main-bg-dark};
+  --second-bg: #{$second-bg-dark};
+  --txt-color: #{$txt-color-dark};
+  --box-shadow: #{$box-shadow-dark};
+}
+
+.theme-color-blue {
+  --main-color: #{$main-color-blue};
+  --second-color: #{$second-color-blue};
+}
+
+.theme-color-red {
+  --main-color: #{$main-color-red};
+  --second-color: #{$second-color-red};
+}
+
+.theme-color-cyan {
+  --main-color: #{$main-color-cyan};
+  --second-color: #{$second-color-cyan};
+}
+
+.theme-color-green {
+  --main-color: #{$main-color-green};
+  --second-color: #{$second-color-green};
+}
+
+.theme-color-orange {
+  --main-color: #{$main-color-orange};
+  --second-color: #{$second-color-orange};
+}

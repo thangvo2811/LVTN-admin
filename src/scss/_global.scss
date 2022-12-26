@@ -1,0 +1,150 @@
+@import "./variable";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.7px;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+a:hover {
+  color: var(--main-color);
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  color: var(--txt-color);
+}
+
+ul {
+  list-style-type: none;
+}
+
+input {
+  border: 2px solid transparent;
+  outline: 0;
+}
+
+input:focus {
+  border: 2px solid var(--main-color);
+}
+
+.page-header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: capitalize;
+  &__add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 16px;
+    border: 1px solid;
+    background-color: #fff;
+    border-radius: 4px;
+    color: #000;
+    text-transform: capitalize;
+  }
+  &__add:hover {
+    border: 1px solid #0e20e9;
+    color: #0e20e9;
+  }
+}
+
+.card {
+  padding: 30px;
+  margin-bottom: 30px;
+  background-color: var(--main-bg);
+  box-shadow: var(--box-shadow);
+  border-radius: $border-radius;
+  &__body {
+    &__features {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .word-wrap {
+      width: 100px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.full-height {
+  height: 100%;
+}
+
+.card.full-height {
+  height: calc(100% - 30px);
+}
+
+.card__header {
+  text-transform: capitalize;
+}
+
+.card > div ~ div {
+  margin-top: 30px;
+}
+
+.card__footer {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.light-background {
+  background-color: $main-bg-light;
+  color: #000;
+}
+
+.dark-background {
+  background-color: black;
+  color: #fff;
+}
+
+.blue-color {
+  background-color: $main-color-blue;
+  color: #fff;
+}
+
+.red-color {
+  background-color: $main-color-red;
+  color: #fff;
+}
+
+.cyan-color {
+  background-color: $main-color-cyan;
+  color: #fff;
+}
+
+.green-color {
+  background-color: $main-color-green;
+  color: #fff;
+}
+
+.orange-color {
+  background-color: $main-color-orange;
+  color: #fff;
+}
