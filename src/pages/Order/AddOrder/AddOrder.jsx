@@ -109,22 +109,22 @@ const AddOrder = (props) => {
     callAllOption(selectProduct, selectOption);
   }, [selectOption, selectProduct]);
 
-  // const handleProduct = (e) => {
-  //   setSelectProduct(e.value);
+  const handleProduct = (e) => {
+    setSelectProduct(e.value);
+  };
+
+  // const handleAddProduct = (e) => {
+  //   const abc = [...addValue, []];
+  //   setAddValue(abc);
+  //   console.log("ABC", abc);
   // };
 
-  const handleAddProduct = (e) => {
-    const abc = [...addValue, []];
-    setAddValue(abc);
-    console.log("ABC", abc);
-  };
-
-  const handleProduct = (e, i) => {
-    let selectData = [...addValue, [setSelectProduct]];
-    selectData = e.value;
-    console.log("object1111", selectData);
-    setSelectProduct(selectData);
-  };
+  // const handleProduct = (e, i) => {
+  //   let selectData = [...addValue, [setSelectProduct]];
+  //   selectData = e.value;
+  //   console.log("object1111", selectData);
+  //   setSelectProduct(selectData);
+  // };
 
   // const handleDeleteProduct = (i) => {
   //   const deleteProduct = [...addValue];
@@ -172,7 +172,7 @@ const AddOrder = (props) => {
                 </option>
               ))}
             </select>
-            {/* <label>Chọn Sản Phẩm</label>
+            <label>Chọn Sản Phẩm</label>
             <Select
               // onChange={(e) => setSelectProduct(e.target.value)}
               className="basic-single"
@@ -210,9 +210,9 @@ const AddOrder = (props) => {
             <Input
               type="number"
               onChange={(e) => setQtyProduct(e.target.value)}
-            ></Input> */}
+            ></Input>
 
-            {addValue?.map((item, index) => {
+            {/* {addValue?.map((item, index) => {
               return (
                 <>
                   <div className="delete-product">
@@ -270,7 +270,7 @@ const AddOrder = (props) => {
               <button className="btn-product">
                 <i className="bx bx-plus"></i>
               </button>
-            </div>
+            </div> */}
           </div>
         </DialogContent>
         <DialogActions>
