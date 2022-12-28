@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../../scss/index.scss";
 
@@ -13,6 +13,9 @@ import notifications from "../../assets/JsonData/notification.json";
 import user_image from "../../assets/images/man.png";
 
 import user_menu from "../../assets/JsonData/user_menus.json";
+import axios from "axios";
+import { useEffect } from "react";
+import { message } from "antd";
 const nameAdmin = localStorage.getItem("nameAdmin");
 
 const curr_user = {
@@ -51,6 +54,28 @@ const renderUserMenu = (item, index) => (
 );
 
 const Topnav = () => {
+  const [orderCus, setOrderCus] = useState();
+
+  const callAllOrderCus = async () => {
+    await axios
+      .get("http://localhost:8000/api/get-all-order-status-1/")
+      .then((res) => {
+        setOrderCus(res.data.order);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const notificationOrder = [
+    {
+      icon: "bx bx-cart",
+      content: `Có ${orderCus} Đơn Hàng Chưa Xác Nhận `,
+    },
+  ];
+
+  useEffect(() => {
+    callAllOrderCus();
+  }, []);
   return (
     <div className="topnav">
       <div className="topnav__search">
@@ -69,10 +94,10 @@ const Topnav = () => {
         <div className="topnav__right-item">
           <Dropdown
             icon="bx bx-bell"
-            badge="12"
-            contentData={notifications}
+            badge={orderCus}
+            contentData={notificationOrder}
             renderItems={(item, index) => renderNotificationItem(item, index)}
-            renderFooter={() => <Link to="/">View All</Link>}
+            // renderFooter={() => <Link to="/">View All</Link>}
           />
           {/* dropdown here */}
         </div>

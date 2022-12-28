@@ -9,6 +9,7 @@ import { Input } from "antd";
 import axios from "axios";
 import { message } from "antd";
 import Select from "react-select";
+import "./style.scss";
 
 const AddOrder = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -23,6 +24,8 @@ const AddOrder = (props) => {
   const [allProduct, setAllProduct] = useState([]);
   const [allOption, setAllOption] = useState([]);
 
+  const [addValue, setAddValue] = useState([]);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -30,6 +33,7 @@ const AddOrder = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
+
   const handleCreateOrderDirect = async (
     phone,
     nameCus,
@@ -46,7 +50,7 @@ const AddOrder = (props) => {
         product: [
           {
             product_id: idProduct,
-            optionvalue: [selectOption],
+            optionvalue: selectOption,
             amount: qty,
           },
         ],
@@ -105,9 +109,29 @@ const AddOrder = (props) => {
     callAllOption(selectProduct, selectOption);
   }, [selectOption, selectProduct]);
 
-  const handleProduct = (e) => {
-    setSelectProduct(e.value);
+  // const handleProduct = (e) => {
+  //   setSelectProduct(e.value);
+  // };
+
+  const handleAddProduct = (e) => {
+    const abc = [...addValue, []];
+    setAddValue(abc);
+    console.log("ABC", abc);
   };
+
+  const handleProduct = (e, i) => {
+    let selectData = [...addValue, [setSelectProduct]];
+    selectData = e.value;
+    console.log("object1111", selectData);
+    setSelectProduct(selectData);
+  };
+
+  // const handleDeleteProduct = (i) => {
+  //   const deleteProduct = [...addValue];
+  //   deleteProduct.slice(i, 1);
+  //   setAddValue(deleteProduct);
+  //   console.log("asdasd123144368", deleteProduct);
+  // };
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -126,69 +150,127 @@ const AddOrder = (props) => {
         <DialogContent>
           <div className="form-title">Tạo Đơn Hàng</div>
           <div className="form-input">
-            <form>
-              <label>Tên Khách Hàng</label>
-              <Input
-                type="text"
-                placeholder="Tên Khách Hàng"
-                onChange={(e) => setNameCus(e.target.value)}
-              />
-              <label>Số Điện Thoại</label>
-              <Input
-                type="number"
-                placeholder="Số Điện Thoại"
-                onChange={(e) => setPhoneCus(e.target.value)}
-              ></Input>
+            <label>Tên Khách Hàng</label>
+            <Input
+              type="text"
+              placeholder="Tên Khách Hàng"
+              onChange={(e) => setNameCus(e.target.value)}
+            />
+            <label>Số Điện Thoại</label>
+            <Input
+              type="number"
+              placeholder="Số Điện Thoại"
+              onChange={(e) => setPhoneCus(e.target.value)}
+            ></Input>
 
-              <label>Chọn Kho</label>
-              <select onChange={(e) => setIdWareHouse(e.target.value)}>
-                <option>Chọn Kho</option>
-                {allWareHouse?.map((item, index) => (
-                  <option key={index} value={item?.id}>
-                    {item?.name}
-                  </option>
-                ))}
-              </select>
-              <label>Chọn Sản Phẩm</label>
-              <Select
-                // onChange={(e) => setSelectProduct(e.target.value)}
-                className="basic-single"
-                classNamePrefix="select"
-                name="color"
-                options={productOption}
-                onChange={handleProduct}
-              ></Select>
+            <label>Chọn Kho</label>
+            <select onChange={(e) => setIdWareHouse(e.target.value)}>
+              <option>Chọn Kho</option>
+              {allWareHouse?.map((item, index) => (
+                <option key={index} value={item?.id}>
+                  {item?.name}
+                </option>
+              ))}
+            </select>
+            {/* <label>Chọn Sản Phẩm</label>
+            <Select
+              // onChange={(e) => setSelectProduct(e.target.value)}
+              className="basic-single"
+              classNamePrefix="select"
+              name="color"
+              options={productOption}
+              onChange={handleProduct}
+            ></Select>
 
-              {allOption?.existingOptions?.map((item, index) => {
-                return (
-                  <>
-                    <label>Thuộc Tính {item.name}</label>
-                    <select
-                      // value={selectOption}
-                      onChange={(e) => {
-                        let newOption = selectOption;
-                        newOption.push(e.target.value);
-                        console.log("newOption", newOption);
-                        setSelectOption(newOption);
-                      }}
-                    >
-                      <option value={item.id}>Chọn {item.name}</option>
-                      {item?.values?.map((data, i) => (
-                        <option key={i.value} value={data.id}>
-                          {data.name}
-                        </option>
-                      ))}
-                    </select>
-                  </>
-                );
-              })}
+            {allOption?.existingOptions?.map((item, index) => {
+              return (
+                <>
+                  <label>Thuộc Tính {item.name}</label>
+                  <select
+                    // value={selectOption}
+                    onChange={(e) => {
+                      let newOption = selectOption;
+                      newOption.push(e.target.value);
+                      console.log("newOption", newOption);
+                      setSelectOption(newOption);
+                    }}
+                  >
+                    <option value={item.id}>Chọn {item.name}</option>
+                    {item?.values?.map((data, i) => (
+                      <option key={i.value} value={data.id}>
+                        {data.name}
+                      </option>
+                    ))}
+                  </select>
+                </>
+              );
+            })}
 
-              <label>Số Lượng</label>
-              <Input
-                type="number"
-                onChange={(e) => setQtyProduct(e.target.value)}
-              ></Input>
-            </form>
+            <label>Số Lượng</label>
+            <Input
+              type="number"
+              onChange={(e) => setQtyProduct(e.target.value)}
+            ></Input> */}
+
+            {addValue?.map((item, index) => {
+              return (
+                <>
+                  <div className="delete-product">
+                    <label>Chọn Sản Phẩm</label>
+                    <div className="delete-product-minus">
+                      <button className="btn-product-minus">
+                        <i className="bx bx-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <Select
+                    // onChange={(e) => setSelectProduct(e.target.value)}
+                    className="basic-single"
+                    classNamePrefix="select"
+                    name="color"
+                    options={productOption}
+                    onChange={handleProduct}
+                  ></Select>
+
+                  {allOption?.existingOptions?.map((item, index) => {
+                    return (
+                      <>
+                        <label>Thuộc Tính {item.name}</label>
+                        <select
+                          // value={selectOption}
+                          onChange={(e) => {
+                            let newOption = selectOption;
+                            newOption.push(e.target.value);
+                            console.log("newOption", newOption);
+                            setSelectOption(newOption);
+                          }}
+                        >
+                          <option value={item.id}>Chọn {item.name}</option>
+                          {item?.values?.map((data, i) => (
+                            <option key={i.value} value={data.id}>
+                              {data.name}
+                            </option>
+                          ))}
+                        </select>
+                      </>
+                    );
+                  })}
+
+                  <label>Số Lượng</label>
+                  <Input
+                    type="number"
+                    onChange={(e) => setQtyProduct(e.target.value)}
+                  ></Input>
+                </>
+              );
+            })}
+
+            <div className="add-product" onClick={() => handleAddProduct()}>
+              <button className="btn-product">
+                <i className="bx bx-plus"></i>
+              </button>
+            </div>
           </div>
         </DialogContent>
         <DialogActions>

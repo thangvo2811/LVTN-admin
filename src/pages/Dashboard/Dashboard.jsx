@@ -157,7 +157,6 @@ const Dashboard = () => {
     await axios
       .get(`${process.env.REACT_APP_API_URL}/api/get-all-order/`)
       .then((res) => {
-        console.log(res.data.order);
         setAllOrder(res.data.order);
       })
       .catch((err) => {

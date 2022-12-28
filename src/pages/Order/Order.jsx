@@ -54,7 +54,7 @@ const Order = () => {
                         <td>{item.id}</td>
                         <td>{item.email}</td>
                         <td>{item.fullname}</td>
-                        <td>{item.phonenumber}</td>
+                        <td>(+84) {item.phonenumber}</td>
                         <td>{item.Address}</td>
                         <td>{item.status}</td>
                         <td>

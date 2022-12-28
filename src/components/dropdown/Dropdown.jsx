@@ -25,12 +25,12 @@ const Dropdown = (props) => {
   return (
     <div className="dropdown">
       <button ref={dropdown_toggle_el} className="dropdown__toggle">
-        {/* {props.icon ? <i className={props.icon}></i> : ""} */}
-        {/* {props.badge ? (
+        {props.icon ? <i className={props.icon}></i> : ""}
+        {props.badge ? (
           <span className="dropdown__toggle-badge">{props.badge}</span>
         ) : (
           ""
-        )} */}
+        )}
         {props.customToggle ? props.customToggle() : ""}
       </button>
       <div ref={dropdown_content_el} className="dropdown__content">
