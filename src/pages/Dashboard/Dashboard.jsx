@@ -17,36 +17,40 @@ import statusCards from "../../assets/JsonData/status-card-data.json";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import { LegendToggleRounded } from "@mui/icons-material";
 
 const data = [
-  { month: "Th1", value: 3 },
-  { month: "Th2", value: 4 },
-  { month: "Th3", value: 3.5 },
-  { month: "Th4", value: 5 },
-  { month: "Th5", value: 4.9 },
-  { month: "Th6", value: 6 },
-  { month: "Th7", value: 7 },
-  { month: "Th8", value: 9 },
-  { month: "Th9", value: 13 },
+  {
+    month: "Oct",
+    value: 2
+},
+{
+  month: "Nov",
+    value: 1
+},
+{
+    month: "Dec",
+    value: 25
+}
 ];
 
-const config = {
-  data,
-  width: 500,
-  height: 400,
-  autoFit: false,
-  xField: "month",
-  yField: "value",
-  point: {
-    size: 5,
-    shape: "diamond",
-  },
-  label: {
-    style: {
-      fill: "#aaa",
-    },
-  },
-};
+// let config = {
+//   data,
+//   width: 500,
+//   height: 400,
+//   autoFit: false,
+//   xField: "month",
+//   yField: "value",
+//   point: {
+//     size: 5,
+//     shape: "diamond",
+//   },
+//   label: {
+//     style: {
+//       fill: "#aaa",
+//     },
+//   },
+// };
 
 let chart;
 
@@ -114,6 +118,7 @@ const Dashboard = () => {
   const [totalPrice, setTotalPrice] = useState();
   const [totalProduct, setTotalProduct] = useState();
   const [totalOrder, setTotalOrder] = useState();
+  const [totalCountEveryMonth, setTotalCountEveryMonth] = useState([]);
 
   const themeReducer = useSelector((state) => state.ThemeReducer.mode);
   const statusOrder = [
@@ -163,11 +168,44 @@ const Dashboard = () => {
         console.log(err);
       });
   };
+  const callCountOrderEachMonth = async () => {
+    await axios
+      .get(`${process.env.REACT_APP_API_URL}/api/get-all-order-in-month/`)
+      .then((res) => {
+        console.log('res: ', res.order);
+        setTotalCountEveryMonth(res.data.order);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     callAllOrder();
     callAllOrderCount();
+    callCountOrderEachMonth()
   }, []);
+
+  // useEffect(() =>{
+  //   console.log('Run !!!');
+  //   const config = {
+  //     totalCountEveryMonth,
+  //     width: 500,
+  //     height: 400,
+  //     autoFit: false,
+  //     xField: "month",
+  //     yField: "value",
+  //     point: {
+  //       size: 5,
+  //       shape: "diamond",
+  //     },
+  //     label: {
+  //       style: {
+  //         fill: "#aaa",
+  //       },
+  //     },
+  //   };
+  // }, [totalCountEveryMonth])
 
   const dateOrder = allOrder?.map((item, index) => item.createdAt);
   console.log("object", dateOrder);
@@ -194,6 +232,24 @@ const Dashboard = () => {
       title: "Đơn Đã Đặt",
     },
   ];
+
+  const config = {
+    data: ((totalCountEveryMonth.length > 0) ? totalCountEveryMonth : []),
+    width: 500,
+    height: 400,
+    autoFit: false,
+    xField: "month",
+    yField: "value",
+    point: {
+      size: 5,
+      shape: "diamond",
+    },
+    label: {
+      style: {
+        fill: "#aaa",
+      },
+    },
+  };
 
   return (
     <div>
@@ -225,10 +281,18 @@ const Dashboard = () => {
               {/* <button type="button" onClick={toDataURL}>
                 Get base64
               </button> */}
-              <Line
+              {
+                totalCountEveryMonth.length > 0 &&
+                <Line
                 {...config}
                 onReady={(chartInstance) => (chart = chartInstance)}
-              />
+             />
+              }
+              {/* <Line
+                {...config}
+                onReady={(chartInstance) => (chart = chartInstance)}
+              /> */}
+              
             </div>
           </div>
         </div>
