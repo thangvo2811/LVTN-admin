@@ -5,10 +5,16 @@ import { useEffect } from "react";
 import UpadateOrder from "./UpdateOrder/UpadateOrder";
 import DeleteOrder from "./DeleteOrder/DeleteOrder";
 import AddOrder from "./AddOrder/AddOrder";
+import { useParams } from "react-router-dom";
+import { useCallback } from "react";
 
 const Order = () => {
   const [allOrder, setAllOrder] = useState([]);
   const [reloadPage, setReloadPage] = useState("");
+  const [selectStatus, setSelectStatus] = useState([]);
+
+  const param = useParams();
+  console.log("param1111", param);
   const callbackFunction = (childData) => {
     setReloadPage(childData);
   };
@@ -22,13 +28,33 @@ const Order = () => {
         console.log(err);
       });
   };
+  // const callAllStatusOrder = useCallback(async (id) => {
+  //   await axios
+  //     .get(`http://localhost:8000/api/get-all-order-by-status/${id}/`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setAllOrder(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
   useEffect(() => {
     callAllOrder();
+    // callAllStatusOrder(selectStatus);
   }, [reloadPage]);
   return (
     <div>
       <div className="page-header">
         <h2 className="page-header__title">Đơn Hàng</h2>
+        {/* <select onChange={(e) => setSelectStatus(e.target.value)}>
+          <option>Chọn Trạng Thái</option>
+          {allOrder?.map((item, index) => (
+            <option key={index} value={item?.status}>
+              {item?.status}
+            </option>
+          ))}
+        </select> */}
         <AddOrder parentCallback={callbackFunction}></AddOrder>
       </div>
       <div className="row">

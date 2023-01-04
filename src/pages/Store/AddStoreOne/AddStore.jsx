@@ -23,6 +23,8 @@ const AddStore = (props) => {
   const [allOption, setAllOption] = useState([]);
   const [selectOption, setSelectOption] = useState([]);
 
+  console.log("Typeof", typeof quantity);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -188,7 +190,7 @@ const AddStore = (props) => {
               <Input
                 type="number"
                 placeholder="Số Lượng"
-                onChange={(e) => setQuantity(e.target.value)}
+                onChange={(e) => setQuantity(e.target.valueAsNumber)}
               />
             </form>
           </div>

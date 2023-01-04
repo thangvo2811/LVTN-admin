@@ -29,6 +29,7 @@ const DeleteOrder = (props) => {
       .catch((err) => {
         console.log(err);
       });
+    setOpen(false);
   };
   return (
     <div>

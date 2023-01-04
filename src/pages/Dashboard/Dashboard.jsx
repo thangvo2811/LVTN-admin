@@ -22,16 +22,16 @@ import { LegendToggleRounded } from "@mui/icons-material";
 const data = [
   {
     month: "Oct",
-    value: 2
-},
-{
-  month: "Nov",
-    value: 1
-},
-{
+    value: 2,
+  },
+  {
+    month: "Nov",
+    value: 1,
+  },
+  {
     month: "Dec",
-    value: 25
-}
+    value: 25,
+  },
 ];
 
 // let config = {
@@ -172,7 +172,7 @@ const Dashboard = () => {
     await axios
       .get(`${process.env.REACT_APP_API_URL}/api/get-all-order-in-month/`)
       .then((res) => {
-        console.log('res: ', res.order);
+        console.log("res: ", res.order);
         setTotalCountEveryMonth(res.data.order);
       })
       .catch((err) => {
@@ -183,7 +183,7 @@ const Dashboard = () => {
   useEffect(() => {
     callAllOrder();
     callAllOrderCount();
-    callCountOrderEachMonth()
+    callCountOrderEachMonth();
   }, []);
 
   // useEffect(() =>{
@@ -234,7 +234,7 @@ const Dashboard = () => {
   ];
 
   const config = {
-    data: ((totalCountEveryMonth.length > 0) ? totalCountEveryMonth : []),
+    data: totalCountEveryMonth.length > 0 ? totalCountEveryMonth : [],
     width: 500,
     height: 400,
     autoFit: false,
@@ -281,18 +281,16 @@ const Dashboard = () => {
               {/* <button type="button" onClick={toDataURL}>
                 Get base64
               </button> */}
-              {
-                totalCountEveryMonth.length > 0 &&
+              {totalCountEveryMonth.length > 0 && (
                 <Line
-                {...config}
-                onReady={(chartInstance) => (chart = chartInstance)}
-             />
-              }
+                  {...config}
+                  onReady={(chartInstance) => (chart = chartInstance)}
+                />
+              )}
               {/* <Line
                 {...config}
                 onReady={(chartInstance) => (chart = chartInstance)}
               /> */}
-              
             </div>
           </div>
         </div>
@@ -349,28 +347,30 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <thead>
-                  {allOrder?.map((item, index) => (
-                    <>
-                      <tr>
-                        <td>{item.code}</td>
-                        <td>{item.fullname}</td>
-                        <td>{item.createdAt.slice(0, 10)}</td>
-                        <td>
-                          {item.status === 1
-                            ? "Chờ Xác Nhận"
-                            : item.status === 2
-                            ? "Đang Chuẩn bị"
-                            : item.status === 3
-                            ? "Đang Giao"
-                            : item.status
-                            ? "Giao Thành Công"
-                            : item.status === 5
-                            ? "Đã Hủy"
-                            : null}
-                        </td>
-                      </tr>
-                    </>
-                  ))}
+                  {allOrder
+                    ?.sort((a, b) => a.status - b.status)
+                    .map((item, index) => (
+                      <>
+                        <tr>
+                          <td>{item.code}</td>
+                          <td>{item.fullname}</td>
+                          <td>{item.createdAt.slice(0, 10)}</td>
+                          <td>
+                            {item.status === 1
+                              ? "Chờ Xác Nhận"
+                              : item.status === 2
+                              ? "Đang Chuẩn bị"
+                              : item.status === 3
+                              ? "Đang Giao"
+                              : item.status
+                              ? "Giao Thành Công"
+                              : item.status === 5
+                              ? "Đã Hủy"
+                              : null}
+                          </td>
+                        </tr>
+                      </>
+                    ))}
                 </thead>
               </table>
             </div>
