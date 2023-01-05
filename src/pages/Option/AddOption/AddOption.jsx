@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
+// import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Input } from "antd";
 import axios from "axios";
@@ -148,11 +148,13 @@ const AddOption = (props) => {
                 onChange={(e) => setSelected(e.target.value)}
               >
                 <option>Chọn Thuộc Tính</option>
-                {allOption?.map((item, index) => (
-                  <option key={index} value={item?.id}>
-                    {item?.name}
-                  </option>
-                ))}
+                {allOption
+                  ?.sort((a, b) => a.id - b.id)
+                  .map((item, index) => (
+                    <option key={index} value={item?.id}>
+                      {item?.name}
+                    </option>
+                  ))}
               </select>
 
               <label>Tên Thuộc Tính</label>

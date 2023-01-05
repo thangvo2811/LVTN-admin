@@ -3,12 +3,12 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
+// import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Input } from "antd";
 import axios from "axios";
 import { message } from "antd";
-import Select from "react-select";
+// import Select from "react-select";
 
 const AddWarrantyOne = (props) => {
   const [open, setOpen] = React.useState(false);

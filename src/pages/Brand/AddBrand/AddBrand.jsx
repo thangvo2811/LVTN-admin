@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
+// import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Input } from "antd";
 import axios from "axios";
@@ -12,7 +12,7 @@ import { message } from "antd";
 const AddBrand = (props) => {
   const [open, setOpen] = React.useState(false);
   const [nameBrand, setNameBrand] = useState("");
-  const [isLoadding, setIsLoading] = message.useMessage();
+  // const [isLoadding, setIsLoading] = message.useMessage();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -22,37 +22,28 @@ const AddBrand = (props) => {
     setOpen(false);
   };
 
-  const handleAddBrand = async (e) => {
-    e.preventDefault();
+  const handleAddBrand = async (name) => {
     await axios
       .post(`${process.env.REACT_APP_API_URL}/api/get-create-brand`, {
-        name: nameBrand,
+        name: name,
       })
       .then((res) => {
-        if (nameBrand === "") {
-          message.error("Bạn chưa nhập thương hiệu");
-          return;
-        }
-        if (res.data.brand.errCode === 1) {
-          message.error("Thương hiệu đã tồn tại");
-          return;
-        }
-        if (res.data.brand.errCode === 0) {
-          console.log(res.data.brand);
-          props.parentCallback(Date.now());
-          message.success("Thêm Thương Hiệu Thành Công");
-          return;
-        }
+        // if (res.brand.errCode === 1) {
+        //   message.error("Thương hiệu đã tồn tại");
+        //   return;
+        // }
+        // if (res.brand.errCode === 2) {
+        //   message.error("Bạn chưa nhập thương hiệu");
+        //   return;
+        // }
+        console.log(res.data);
+        props.parentCallback(Date.now());
+        message.success("Thêm Thương Hiệu Thành Công");
       })
       .catch((err) => {
         console.log(err);
       });
     setOpen(false);
-  };
-
-  const onChange = (e) => {
-    e.preventDefault();
-    setNameBrand(e.target.value);
   };
 
   return (
@@ -78,7 +69,7 @@ const AddBrand = (props) => {
                 type="text"
                 placeholder="Name"
                 value={nameBrand}
-                onChange={onChange}
+                onChange={(e) => setNameBrand(e.target.value)}
               />
             </form>
           </div>
@@ -87,8 +78,8 @@ const AddBrand = (props) => {
           <Button onClick={handleClose}>Hủy</Button>
 
           <Button
-            onClick={(e) => {
-              handleAddBrand(e, e.target.value);
+            onClick={() => {
+              handleAddBrand(nameBrand);
             }}
           >
             Thêm
